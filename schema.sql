@@ -4,7 +4,7 @@ USE crudy_db;
 
 CREATE TABLE product (
 productId int AUTO_INCREMENT,
-name varchar(20) UNIQUE,
+name varchar(20),
 description varchar(100),
 quantity int,
 PRIMARY KEY (productId)
