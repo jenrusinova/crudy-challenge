@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 var bodyParser = require('body-parser');
-let db = require('./database.js');
+const helpers = require('./helpers.js');
 
 
 // create application/json parser
@@ -20,21 +20,14 @@ app.get('/products', (req, res) => {
 app.post('/addNewProduct', (req, res) => {
 let newProductData = req.body;
 
-  function createNewProduct(data){
-    return new Promise((resolve, reject) =>{
-     db.product.post(data, (err, result) =>{
-       if(err){
-         console.log(' line 27');
-         reject(err);
-       } else {
-         console.log('result line 30');
-         resolve(result);
-       }
-     })
-    })
-  }
-
-  createNewProduct(newProductData);
+  helpers.createNewProduct(newProductData)
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.sendStatus(400);
+  })
   res.sendStatus(201);
 })
 
