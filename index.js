@@ -14,22 +14,31 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json({ type: 'application/json' }))
 
 app.get('/products', (req, res) => {
-  res.sendStatus(200);
+  helpers.getProductList()
+  .then(result => {
+    console.log(result);
+    res.send(result);
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(400);
+  })
 });
 
 app.post('/addNewProduct', (req, res) => {
-let newProductData = req.body;
+  let newProductData = req.body;
 
   helpers.createNewProduct(newProductData)
   .then(data => {
-    res.send(data);
+    res.sendStatus(201);
   })
   .catch(err =>{
     console.log(err);
     res.sendStatus(400);
   })
-  res.sendStatus(201);
 })
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

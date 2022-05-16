@@ -12,6 +12,21 @@ function createNewProduct(data){
   })
 }
 
+function getProductList(){
+  return new Promise((resolve, reject) =>{
+   db.product.get((err, result) =>{
+    if(err){
+     reject(err);
+    } else {
+     resolve(result);
+    }
+   })
+  })
+}
+
+
+
 module.exports = {
-  createNewProduct
+  createNewProduct,
+  getProductList
 }

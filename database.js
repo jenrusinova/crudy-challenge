@@ -33,6 +33,16 @@ module.exports = {
         callback(null, err);
       }
     })
+  },
+  get: function(callback){
+    var queryString = 'SELECT * from product';
+    connection.query(queryString, (err, result) => {
+      if (err){
+        callback(err, null);
+      } else {
+        callback(null, result);
+      }
+    })
   }
   }
 }
