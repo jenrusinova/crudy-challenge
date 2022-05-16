@@ -1,0 +1,23 @@
+{
+  "name": "crudy",
+  "version": "1.0.0",
+  "description": "crudy challenge for spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenrusinova/crudy-challenge.git"
+  },
+  "author": "Jenya Rusinova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenrusinova/crudy-challenge/issues"
+  },
+  "homepage": "https://github.com/jenrusinova/crudy-challenge#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
