@@ -42,7 +42,7 @@ app.post('/addNewProduct', (req, res) => {
 app.put('/products/:id', (req, res) => {
   let id = req.params.id;
   let newQuantity = req.body.newQuantity;
-  
+
   helpers.updateQuantity(id, newQuantity)
   .then(helpers.getProductList)
   .then(data => {
@@ -53,6 +53,20 @@ app.put('/products/:id', (req, res) => {
     res.sendStatus(400);
   });
 });
+
+app.delete('/products/:id', (req, res) => {
+  let id = req.params.id;
+
+  helpers.deleteProduct(id)
+  .then(helpers.getProductList)
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(400);
+  })
+})
 
 
 

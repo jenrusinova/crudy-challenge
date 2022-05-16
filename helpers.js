@@ -36,8 +36,21 @@ function updateQuantity(id, quantity){
   })
 }
 
+function deleteProduct(id){
+  return new Promise((resolve, reject) => {
+    db.product.delete(id, (err, result) => {
+      if(err){
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    })
+   })
+}
+
 module.exports = {
   createNewProduct,
   getProductList,
-  updateQuantity
+  updateQuantity,
+  deleteProduct
 }
