@@ -22,21 +22,37 @@ app.get('/products', (req, res) => {
   .catch(err => {
     console.log(err);
     res.sendStatus(400);
-  })
+  });
 });
 
 app.post('/addNewProduct', (req, res) => {
   let newProductData = req.body;
 
   helpers.createNewProduct(newProductData)
+  .then(helpers.getProductList)
   .then(data => {
-    res.sendStatus(201);
+    res.send(data);
   })
-  .catch(err =>{
+  .catch(err => {
     console.log(err);
     res.sendStatus(400);
+  });
+});
+
+app.put('/products/:id', (req, res) => {
+  let id = req.params.id;
+  let newQuantity = req.body.newQuantity;
+  
+  helpers.updateQuantity(id, newQuantity)
+  .then(helpers.getProductList)
+  .then(data => {
+    res.send(data);
   })
-})
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(400);
+  });
+});
 
 
 

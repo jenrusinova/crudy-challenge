@@ -24,9 +24,20 @@ function getProductList(){
   })
 }
 
-
+function updateQuantity(id, quantity){
+  return new Promise((resolve, reject) => {
+   db.product.update(id, quantity, (err, result) => {
+     if(err){
+       reject(err);
+     } else {
+       resolve(result);
+     }
+   })
+  })
+}
 
 module.exports = {
   createNewProduct,
-  getProductList
+  getProductList,
+  updateQuantity
 }

@@ -43,6 +43,16 @@ module.exports = {
         callback(null, result);
       }
     })
+  },
+  update: function(receivedId, quantity, callback){
+    var queryString = `UPDATE product SET quantity = '${quantity}' WHERE productId = ${receivedId}`;
+    connection.query(queryString, (err, result) => {
+     if (err){
+       callback(err, null);
+     } else {
+       callback(null, err);
+     }
+   })
   }
   }
 }
