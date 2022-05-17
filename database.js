@@ -61,5 +61,32 @@ module.exports = {
         }
       })
     }
+  },
+  deletedProduct: {
+    post : function (receivedId, comment, callback){
+      var queryStringSelect = `SELECT * from product WHERE productId = ${receivedId}`;
+      connection.query(queryStringSelect, (err, result) => {
+        if (err){
+          callback(err, null);
+        } else {
+          console.log('result', result);
+          let productId = result[0].productId;
+          let name = result[0].name;
+          let description = result[0].description;
+          let quantity = result[0].quantity;
+          var queryStringInsert = `INSERT into deletedProduct (productId, name, description, quantity, comment) VALUES ('${productId}', '${name}', '${description}', '${quantity}', '${comment}');`
+          connection.query(queryStringInsert, (err, result) => {
+            if (err){
+              callback(err, null);
+            } else {
+               callback(null, err);
+            }
+          });
+        }//end else
+      })//end connection
+    }//end post
   }
 }
+
+
+

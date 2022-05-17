@@ -36,21 +36,34 @@ function updateQuantity(id, quantity){
   })
 }
 
-function deleteProduct(id){
+function deleteProduct(id, comment){
   return new Promise((resolve, reject) => {
-    db.product.delete(id, (err, result) => {
+    db.deletedProduct.post(id, comment, (err, result) => {
       if(err){
         reject(err);
       } else {
-        resolve(result);
+          db.product.delete(id, (err, result) => {
+            if(err){
+              reject(err);
+            } else {
+             resolve(result);
+            }
+         })
       }
     })
-   })
+  })
 }
+
+// function createNewDeletion(id){
+//   return new Promise((resolve, reject) => {
+//
+//    })
+// }
 
 module.exports = {
   createNew,
   getList,
   updateQuantity,
-  deleteProduct
+  deleteProduct,
+
 }

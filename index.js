@@ -56,8 +56,9 @@ app.put('/products/:id', (req, res) => {
 
 app.delete('/products/:id', (req, res) => {
   let id = req.params.id;
+  let comment = req.body.comment;
 
-  products.deleteProduct(id)
+  products.deleteProduct(id, comment)
   .then(products.getList)
   .then(data => {
     res.send(data);
