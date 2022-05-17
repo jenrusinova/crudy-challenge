@@ -1,7 +1,7 @@
 # crudy-challenge
 
 ### General info
-Thid is simple CRUDy app, allowing user to create, update, delete product and receive list of all products.
+This is simple CRUDy app, allowing user to create, update, delete product and receive list of all products.
 
 The additional feature is product undelition and allowing to add deletion comment.
 
@@ -20,7 +20,7 @@ The additional feature is product undelition and allowing to add deletion commen
 
 
 ### Instructions (for POSTMAN):
-1)Creating new product
+1)Creating a new product
 
 Make sure that application is running.
 
@@ -35,7 +35,7 @@ Insert this example data in main text field:
 Press on 'Send' button.
 You should see list of all created products including the one that you've just created.
 
-2)Get list of all products
+2)Get the list of all products
 
 Choose GET as request type, insert url 'http://localhost:3000/products'.
 Press on 'Send' button.
