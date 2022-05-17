@@ -54,16 +54,23 @@ function deleteProduct(id, comment){
   })
 }
 
-// function createNewDeletion(id){
-//   return new Promise((resolve, reject) => {
-//
-//    })
-// }
+function undeleteProduct(id){
+  return new Promise((resolve, reject) => {
+    db.deletedProduct.delete(id, (err, result) => {
+      if(err){
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    })
+  })
+
+}
 
 module.exports = {
   createNew,
   getList,
   updateQuantity,
   deleteProduct,
-
+  undeleteProduct
 }

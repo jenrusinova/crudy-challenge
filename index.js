@@ -69,6 +69,20 @@ app.delete('/products/:id', (req, res) => {
   })
 })
 
+app.post('/products/undelete/:id', (req, res) => {
+  let id = req.params.id;
+  console.log('server 74');
+  products.undeleteProduct(id)
+  .then(products.getList)
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(400);
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 });
