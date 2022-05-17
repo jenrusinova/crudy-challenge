@@ -69,7 +69,6 @@ module.exports = {
         if (err){
           callback(err, null);
         } else {
-          console.log('result', result);
           let productId = result[0].productId;
           let name = result[0].name;
           let description = result[0].description;
@@ -82,17 +81,15 @@ module.exports = {
                callback(null, err);
             }
           });
-        }//end else
-      })//end connection
-    },//end post
+        }
+      })
+    },
     delete : function (receivedId, callback) {
       var queryStringSelect = `SELECT * from deletedProduct WHERE productID =${receivedId}`;
       connection.query(queryStringSelect, (err, result) => {
         if(err){
           callback(err, null);
         } else {
-          console.log('result', result);
-          console.log('creating new product in product table');
           var productId = result[0].productId;
           var name = result[0].name;
           var description = result[0].description;
@@ -102,7 +99,6 @@ module.exports = {
             if (err){
               callback(err, null);
             } else {
-              console.log('deleting product from deletedProduct table');
               var queryStringDelete = `DELETE from deletedProduct WHERE productId = ${receivedId}`;
               connection.query(queryStringDelete, (err, result) => {
                 if (err){

@@ -16,7 +16,6 @@ app.use(bodyParser.json({ type: 'application/json' }))
 app.get('/products', (req, res) => {
   products.getList()
   .then(result => {
-    //console.log(result);
     res.send(result);
   })
   .catch(err => {
@@ -71,7 +70,6 @@ app.delete('/products/:id', (req, res) => {
 
 app.post('/products/undelete/:id', (req, res) => {
   let id = req.params.id;
-  console.log('server 74');
   products.undeleteProduct(id)
   .then(products.getList)
   .then(data => {
