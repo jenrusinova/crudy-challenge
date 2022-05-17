@@ -1,6 +1,6 @@
 let db = require('./database.js');
 
-function createNewProduct(data){
+function createNew(data){
   return new Promise((resolve, reject) =>{
    db.product.post(data, (err, result) =>{
      if(err){
@@ -12,7 +12,7 @@ function createNewProduct(data){
   })
 }
 
-function getProductList(){
+function getList(){
   return new Promise((resolve, reject) =>{
    db.product.get((err, result) =>{
     if(err){
@@ -49,8 +49,8 @@ function deleteProduct(id){
 }
 
 module.exports = {
-  createNewProduct,
-  getProductList,
+  createNew,
+  getList,
   updateQuantity,
   deleteProduct
 }

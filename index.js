@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 var bodyParser = require('body-parser');
-const helpers = require('./helpers.js');
+const products = require('./products.js');
 
 
 // create application/json parser
@@ -14,9 +14,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json({ type: 'application/json' }))
 
 app.get('/products', (req, res) => {
-  helpers.getProductList()
+  products.getList()
   .then(result => {
-    console.log(result);
+    //console.log(result);
     res.send(result);
   })
   .catch(err => {
@@ -28,8 +28,8 @@ app.get('/products', (req, res) => {
 app.post('/addNewProduct', (req, res) => {
   let newProductData = req.body;
 
-  helpers.createNewProduct(newProductData)
-  .then(helpers.getProductList)
+  products.createNew(newProductData)
+  .then(products.getList)
   .then(data => {
     res.send(data);
   })
@@ -43,8 +43,8 @@ app.put('/products/:id', (req, res) => {
   let id = req.params.id;
   let newQuantity = req.body.newQuantity;
 
-  helpers.updateQuantity(id, newQuantity)
-  .then(helpers.getProductList)
+  products.updateQuantity(id, newQuantity)
+  .then(products.getList)
   .then(data => {
     res.send(data);
   })
@@ -57,8 +57,8 @@ app.put('/products/:id', (req, res) => {
 app.delete('/products/:id', (req, res) => {
   let id = req.params.id;
 
-  helpers.deleteProduct(id)
-  .then(helpers.getProductList)
+  products.deleteProduct(id)
+  .then(products.getList)
   .then(data => {
     res.send(data);
   })
@@ -67,8 +67,6 @@ app.delete('/products/:id', (req, res) => {
     res.sendStatus(400);
   })
 })
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
